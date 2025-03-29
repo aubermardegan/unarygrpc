@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package person.v1;
+
+option go_package = "./pb/person/v1;personv1";
+
+service PersonService {
+    rpc AddPerson(AddPersonRequest) returns (AddPersonResponse);
+    rpc GetPerson(GetPersonRequest) returns (GetPersonResponse);
+    rpc ListPeople(ListPeopleRequest) returns (ListPeopleResponse);
+}
+
+message Person {
+    string uuid = 1;
+    string name = 2;
+    int32 age = 3;
+}
+
+message AddPersonRequest {
+    string name = 2;
+    int32 age = 3;
+}
+
+message AddPersonResponse {
+    Person person = 1;
+}
+
+message GetPersonRequest {
+    string uuid = 1;
+}
+
+message GetPersonResponse {
+    Person person = 1;
+}
+
+message ListPeopleRequest {    
+}
+
+message ListPeopleResponse {
+    repeated Person people = 1;
+}
